@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "locktrace-ae48e",
+          "appId": "1:206800735722:android:0a26d972fb9b8b5ebcb693",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "locktrace-ae48e",
+          "configurations": {
+            "android": "1:206800735722:android:0a26d972fb9b8b5ebcb693",
+            "web": "1:206800735722:web:20bbc4c90b110df9bcb693"
+          }
+        }
+      }
+    }
+  }
+}
