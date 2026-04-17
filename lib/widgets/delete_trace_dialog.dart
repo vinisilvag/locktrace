@@ -38,7 +38,7 @@ class _DeleteTraceDialogState extends State<DeleteTraceDialog> {
       insetPadding: EdgeInsets.symmetric(horizontal: 24),
       content: SizedBox(
         width: 340,
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

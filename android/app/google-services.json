@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "206800735722",
+    "project_id": "locktrace-ae48e",
+    "storage_bucket": "locktrace-ae48e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206800735722:android:0a26d972fb9b8b5ebcb693",
+        "android_client_info": {
+          "package_name": "com.vinisilvag.locktrace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9RSeaj59VlePaQxaGOIbVrZXRIe6dhQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

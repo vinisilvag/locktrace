@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         stream: traceService.watchTraces(authService.currentUser!.uid),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Container(
+            return SizedBox(
               width: double.infinity,
               height: double.infinity,
               child: Padding(
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           final traces = snapshot.data!;
 
           if (traces.isEmpty) {
-            return Container(
+            return SizedBox(
               width: double.infinity,
               height: double.infinity,
               child: Padding(
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return ListView.separated(
             itemCount: traces.length,
             padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
-            separatorBuilder: (_, __) => const SizedBox(height: 12),
+            separatorBuilder: (_, _) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               final trace = traces[index];
               return GestureDetector(

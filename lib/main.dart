@@ -8,14 +8,26 @@ import 'package:locktrace/firebase_options.dart';
 
 import 'package:locktrace/screens/sign_in.dart';
 
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(const LockTraceApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LockTraceApp extends StatefulWidget {
+  const LockTraceApp({super.key});
+
+  @override
+  State<LockTraceApp> createState() => _LockTraceAppState();
+}
+
+class _LockTraceAppState extends State<LockTraceApp> {
+  void initialization() {
+    FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +39,11 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Container(
-              color: Color(0xFF191816),
-              child: Center(
-                child: CircularProgressIndicator(color: Color(0xFFFFC632)),
-              ),
-            );
+          if (snapshot.connectionState == ConnectionState.active ||
+              snapshot.connectionState == ConnectionState.done) {
+            initialization();
           }
+
           if (snapshot.data != null) {
             return const HomeScreen();
           }
