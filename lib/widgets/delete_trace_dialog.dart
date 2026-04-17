@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:locktrace/services/trace_service.dart';
+import 'package:locktrace/utils/firebase_errors.dart';
 
 import 'package:locktrace/widgets/forms/snackbar.dart';
 
@@ -25,7 +26,7 @@ class _DeleteTraceDialogState extends State<DeleteTraceDialog> {
       showSuccessSnackBar(context, "Trace deletado com sucesso.");
       Navigator.pop(context);
     } on FirebaseException catch (err) {
-      showErrorSnackBar(context, err.message ?? "");
+      showErrorSnackBar(context, handleFirebaseError(err));
     } finally {
       setState(() => isLoading = false);
     }

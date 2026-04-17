@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:locktrace/services/auth_service.dart';
+import 'package:locktrace/utils/firebase_errors.dart';
 
 import 'package:locktrace/validators/form_validators.dart';
 import 'package:locktrace/widgets/forms/snackbar.dart';
@@ -52,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     try {
       await authService.signUp(email: email, password: password);
     } on FirebaseAuthException catch (err) {
-      showErrorSnackBar(context, err.message ?? "");
+      showErrorSnackBar(context, handleFirebaseError(err));
     } finally {
       setState(() => isLoading = false);
     }

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:locktrace/services/auth_service.dart';
 import 'package:locktrace/services/trace_service.dart';
+import 'package:locktrace/utils/firebase_errors.dart';
 import 'package:locktrace/widgets/forms/button.dart';
 import 'package:locktrace/widgets/forms/checkbox.dart';
 import 'package:locktrace/widgets/forms/snackbar.dart';
@@ -41,7 +42,7 @@ class TraceBottomSheetState extends State<TraceBottomSheet> {
       Navigator.pop(context);
     } on FirebaseException catch (err) {
       Navigator.pop(context);
-      showErrorSnackBar(context, err.message ?? "");
+      showErrorSnackBar(context, handleFirebaseError(err));
     } finally {
       setState(() => isLoading = false);
     }

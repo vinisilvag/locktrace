@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:locktrace/services/auth_service.dart';
+import 'package:locktrace/utils/firebase_errors.dart';
 
 import 'package:locktrace/widgets/forms/text_field.dart';
 import 'package:locktrace/widgets/forms/button.dart';
@@ -37,7 +38,7 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
       showSuccessSnackBar(context, "E-mail de recuperação enviado.");
       Navigator.pop(context);
     } on FirebaseAuthException catch (err) {
-      showErrorSnackBar(context, err.message ?? "");
+      showErrorSnackBar(context, handleFirebaseError(err));
     } finally {
       setState(() => isLoading = false);
     }

@@ -54,7 +54,7 @@ class TraceItem extends StatelessWidget {
                 ),
               ),
               Text(
-                timeago.format(trace.createdAt),
+                timeago.format(trace.createdAt, locale: 'pt_BR'),
                 style: TextStyle(color: Color(0xFFA9AFB9)),
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:locktrace/services/auth_service.dart';
+import 'package:locktrace/utils/firebase_errors.dart';
 
 import 'package:locktrace/validators/form_validators.dart';
 import 'package:locktrace/widgets/forms/forgot_password_dialog.dart';
@@ -59,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
     try {
       await authService.signIn(email: email, password: password);
     } on FirebaseAuthException catch (err) {
-      showErrorSnackBar(context, err.message ?? "");
+      showErrorSnackBar(context, handleFirebaseError(err));
     } finally {
       setState(() => isLoading = false);
     }

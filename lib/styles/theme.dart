@@ -12,5 +12,10 @@ class AppTheme {
     scaffoldBackgroundColor: Color(0xFF191816),
     primaryColorDark: Color(0xFFFFC632),
     textTheme: GoogleFonts.poppinsTextTheme(),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Color(0xFFFFC632),
+      selectionHandleColor: Color(0xFFFFC632),
+      selectionColor: Color(0xFFFFC632).withValues(alpha: 0.2),
+    ),
   );
 }

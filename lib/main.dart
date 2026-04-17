@@ -10,7 +10,10 @@ import 'package:locktrace/screens/sign_in.dart';
 
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+import 'package:timeago/timeago.dart' as timeago;
+
 void main() async {
+  timeago.setLocaleMessages('pt_BR', timeago.PtBrMessages());
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

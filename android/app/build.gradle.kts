@@ -18,7 +18,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.locktrace"~
+    namespace = "com.example.locktrace"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
