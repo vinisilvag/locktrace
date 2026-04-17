@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:locktrace/services/auth_service.dart';
 
 import 'package:locktrace/widgets/forms/text_field.dart';
 import 'package:locktrace/widgets/forms/button.dart';
@@ -21,6 +22,8 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
 
   bool isLoading = false;
 
+  final authService = AuthService();
+
   Future<void> forgotPassword() async {
     if (!_formKey.currentState!.validate()) return;
     FocusScope.of(context).unfocus();
@@ -30,7 +33,7 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
     final email = _emailController.text.trim();
 
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await authService.sendPasswordReset(email);
       showSuccessSnackBar(context, "E-mail de recuperação enviado.");
       Navigator.pop(context);
     } on FirebaseAuthException catch (err) {
@@ -49,7 +52,7 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
         width: 340,
         child: Form(
           key: _formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.onUserInteractionIfError,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

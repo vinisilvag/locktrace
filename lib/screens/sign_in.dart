@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:locktrace/services/auth_service.dart';
 
 import 'package:locktrace/validators/form_validators.dart';
 import 'package:locktrace/widgets/forms/forgot_password_dialog.dart';
@@ -28,6 +29,8 @@ class _SignInScreenState extends State<SignInScreen> {
   final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
 
+  final authService = AuthService();
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -54,10 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
     final password = _passwordController.text.trim();
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      await authService.signIn(email: email, password: password);
     } on FirebaseAuthException catch (err) {
       showErrorSnackBar(context, err.message ?? "");
     } finally {

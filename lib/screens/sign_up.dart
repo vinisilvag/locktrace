@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:locktrace/services/auth_service.dart';
 
 import 'package:locktrace/validators/form_validators.dart';
 import 'package:locktrace/widgets/forms/snackbar.dart';
@@ -24,6 +25,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
 
+  final authService = AuthService();
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -47,9 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final password = _passwordController.text.trim();
 
     try {
-      final userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      print(userCredential);
+      await authService.signUp(email: email, password: password);
     } on FirebaseAuthException catch (err) {
       showErrorSnackBar(context, err.message ?? "");
     } finally {
@@ -91,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 Form(
                   key: _formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.onUserInteractionIfError,
                   child: Column(
                     spacing: 16,
                     children: [

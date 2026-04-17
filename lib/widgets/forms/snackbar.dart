@@ -7,7 +7,7 @@ void showErrorSnackBar(BuildContext context, String message) {
         message,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       backgroundColor: const Color(0xffcf6679),
     ),
   );
@@ -20,7 +20,7 @@ void showSuccessSnackBar(BuildContext context, String message) {
         message,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
       ),
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       backgroundColor: const Color.fromARGB(255, 148, 207, 102),
     ),
   );
